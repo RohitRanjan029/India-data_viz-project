@@ -127,10 +127,13 @@ plot = st.sidebar.button('Plot Graph')
 
 
 if plot:
+
+
     st.markdown(f"**Size represents:** `{primary}` &nbsp;&nbsp; | &nbsp;&nbsp; **Color represents:** `{secondary}`")
     st.markdown("---")
 
     if selected_state == 'Overall India':
+        show_colorbar = st.sidebar.checkbox("Show Color Legend", value=True)
         fig = px.scatter_mapbox(
             df,
             lat="Latitude",
@@ -146,8 +149,15 @@ if plot:
             height=700,
             hover_name='District'
         )
+
         fig.update_traces(marker=dict(opacity=0.85))
-        st.plotly_chart(fig, use_container_width=True)
+        st.plotly_chart(fig,
+        use_container_width=False,
+        config={
+            "scrollZoom": True,
+            "displayModeBar": True,
+            "responsive": False
+        })
 
         if show_table:
             st.subheader("Full Data Table")
@@ -174,7 +184,13 @@ if plot:
             hover_name='District'
         )
         fig.update_traces(marker=dict(opacity=0.85))
-        st.plotly_chart(fig, use_container_width=True)
+        st.plotly_chart(fig,
+        use_container_width=False,
+        config={
+            "scrollZoom": True,
+            "displayModeBar": True,
+            "responsive": False
+        })
 
         if show_table:
             st.subheader(f"{selected_state} Data Table")
@@ -194,7 +210,7 @@ if plot:
 
     st.markdown("""
     <hr style="margin-top:2em;">
-    <div style="text-align:center; color: black;">
+    <div style="text-align:center; color: gray;">
     #✨# Made by Rohit Ranjan | Streamlit & Plotly #✨#
     </div>
     """, unsafe_allow_html=True)
