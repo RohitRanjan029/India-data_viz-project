@@ -128,12 +128,10 @@ plot = st.sidebar.button('Plot Graph')
 
 if plot:
 
-
     st.markdown(f"**Size represents:** `{primary}` &nbsp;&nbsp; | &nbsp;&nbsp; **Color represents:** `{secondary}`")
     st.markdown("---")
 
     if selected_state == 'Overall India':
-        show_colorbar = st.sidebar.checkbox("Show Color Legend", value=True)
         fig = px.scatter_mapbox(
             df,
             lat="Latitude",
@@ -210,7 +208,7 @@ if plot:
 
     st.markdown("""
     <hr style="margin-top:2em;">
-    <div style="text-align:center; color: gray;">
+    <div style="text-align:center; color:green;">
     #✨# Made by Rohit Ranjan | Streamlit & Plotly #✨#
     </div>
     """, unsafe_allow_html=True)
